@@ -1,0 +1,65 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Voxel_Engine_Rewrite</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="src\Assets\Shaders\fragment.glsl" />
+    <None Remove="src\Assets\Shaders\vertex.glsl" />
+    <None Remove="src\Assets\Textures\cobblestone.png" />
+    <None Remove="src\Assets\Textures\dirt.png" />
+    <None Remove="src\Assets\Textures\grass_block_side.png" />
+    <None Remove="src\Assets\Textures\grass_block_top.png" />
+    <None Remove="src\Assets\Textures\map.png" />
+    <None Remove="src\Assets\Textures\oak_leaves.png" />
+    <None Remove="src\Assets\Textures\oak_log.png" />
+    <None Remove="src\Assets\Textures\oak_log_top.png" />
+    <None Remove="src\Assets\Textures\oak_planks.png" />
+    <None Remove="src\Assets\Textures\sand.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="src\Assets\Shaders\fragment.glsl" />
+    <EmbeddedResource Include="src\Assets\Shaders\vertex.glsl" />
+    <EmbeddedResource Include="src\Assets\Textures\cobblestone.png" />
+    <EmbeddedResource Include="src\Assets\Textures\dirt.png" />
+    <EmbeddedResource Include="src\Assets\Textures\grass_block_side.png" />
+    <EmbeddedResource Include="src\Assets\Textures\grass_block_top.png" />
+    <EmbeddedResource Include="src\Assets\Textures\map.png" />
+    <EmbeddedResource Include="src\Assets\Textures\oak_leaves.png" />
+    <EmbeddedResource Include="src\Assets\Textures\oak_log.png" />
+    <EmbeddedResource Include="src\Assets\Textures\oak_log_top.png" />
+    <EmbeddedResource Include="src\Assets\Textures\oak_planks.png" />
+    <EmbeddedResource Include="src\Assets\Textures\sand.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="glfw3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="glfw3.lib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="glfw3dll.lib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="glfw3_mt.lib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="OpenGL.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GlmSharp" Version="0.9.8" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="2.0.0" />
+  </ItemGroup>
+
+</Project>
