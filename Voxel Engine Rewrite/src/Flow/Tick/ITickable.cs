@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Voxel_Engine_Rewrite
 {
-    internal class ITickable
+    public class ITickable
     {
         public ITickable()
         {

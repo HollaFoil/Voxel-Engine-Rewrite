@@ -7,12 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Voxel_Engine_Rewrite.Flow;
 using Voxel_Engine_Rewrite.Flow.States;
+using Voxel_Engine_Rewrite.src.Entity;
 
 namespace Voxel_Engine_Rewrite.src
 {
     internal static class Game
     {
         private static StateController GameState;
+        private static Player player;
         public static void Run()
         {
             GameState.Next();
@@ -25,10 +27,15 @@ namespace Voxel_Engine_Rewrite.src
         public static void Init()
         {
             GameState = new StateController(new Paused());
+            player = new Player();
         }
         public static void Stop()
         {
 
+        }
+        public static Player GetPlayer()
+        {
+            return player;
         }
     }
 }

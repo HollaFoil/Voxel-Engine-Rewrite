@@ -22,6 +22,7 @@
     <None Remove="src\Assets\Textures\oak_log_top.png" />
     <None Remove="src\Assets\Textures\oak_planks.png" />
     <None Remove="src\Assets\Textures\sand.png" />
+    <None Remove="src\Assets\Textures\stone.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +38,7 @@
     <EmbeddedResource Include="src\Assets\Textures\oak_log_top.png" />
     <EmbeddedResource Include="src\Assets\Textures\oak_planks.png" />
     <EmbeddedResource Include="src\Assets\Textures\sand.png" />
+    <EmbeddedResource Include="src\Assets\Textures\stone.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,6 +62,7 @@
   <ItemGroup>
     <PackageReference Include="GlmSharp" Version="0.9.8" />
     <PackageReference Include="SixLabors.ImageSharp" Version="2.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
 
 </Project>

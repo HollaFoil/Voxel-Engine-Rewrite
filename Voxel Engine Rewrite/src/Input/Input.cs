@@ -40,7 +40,7 @@ namespace Voxel_Engine_Rewrite.src.Input
             float centerx = ((windowx + width / 2) / (float)screen.Width);
             float centery = ((windowy + height / 2) / (float)screen.Height);
 
-            vec2 change = new vec2(-(centerx * width - (float)x), centery * height - (float)y) * sensitivity;
+            vec2 change = new vec2(centerx * width - (float)x, centery * height - (float)y) * sensitivity;
             
             Glfw.SetCursorPosition(window, centerx * width, centery * height);
             new MouseMovedEvent(change).Fire();
@@ -49,7 +49,7 @@ namespace Voxel_Engine_Rewrite.src.Input
         //TEMPORARY LOGIC REALLY UGLY NOT EXPANDABLE NEED BETTER IDEA;
         private static void ThrowEvents(Keys key)
         {
-            if (Keybinds.Take(4).Any(pair => pair.Key == key))
+            if (Keybinds.Take(6).Any(pair => pair.Key == key))
             {
                 new DirectionalKeyPressEvent(GetKeysDirection()).Fire();
             }

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Voxel_Engine_Rewrite.src;
 using Voxel_Engine_Rewrite.src.Entity;
+using Voxel_Engine_Rewrite.src.Render;
 
 namespace Voxel_Engine_Rewrite.Flow.States
 {
@@ -25,7 +27,11 @@ namespace Voxel_Engine_Rewrite.Flow.States
         {
             
             if (tickTimer.Next(out int temp)) Tick.DoTick();
-            if (frameTimer.Next(out int elapsedTime)) Player.Update(elapsedTime);
+            if (frameTimer.Next(out int elapsedTime))
+            {
+                Player.GetInstance().Update(elapsedTime);
+                RenderCore.Flush();
+            }
         }
         public override void Disable()
         {

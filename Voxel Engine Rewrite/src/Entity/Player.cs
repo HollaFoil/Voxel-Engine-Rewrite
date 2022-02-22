@@ -8,13 +8,11 @@ using Voxel_Engine_Rewrite.src.Event.Events;
 
 namespace Voxel_Engine_Rewrite.src.Entity
 {
-    public static class Player
+    public class Player : IEntity
     {
-        private static vec3 position;
-        private static vec2 facing;
-        private static vec3 directionPressed;
-        private static float speed = 0.02f;
-        static Player()
+        private vec3 directionPressed;
+        private float speed = 0.02f;
+        public Player()
         {
             DirectionalKeyPressEvent.Listeners += OnDirectionalKeyPress;
             MouseMovedEvent.Listeners += OnMouseMoved;
@@ -22,34 +20,24 @@ namespace Voxel_Engine_Rewrite.src.Entity
             facing = new vec2();
             directionPressed = new vec3();
         }
-        public static vec3 GetPosition()
-        {
-            return position;
-        }
-        public static vec2 GetYawPitch()
-        {
-            return facing;
-        }
-        private static void OnDirectionalKeyPress(DirectionalKeyPressEvent e)
+        private void OnDirectionalKeyPress(DirectionalKeyPressEvent e)
         {
             directionPressed = e.GetDirection();
-            Console.WriteLine("Direction press: " + directionPressed);
         }
-        private static void OnMouseMoved(MouseMovedEvent e)
+        private void OnMouseMoved(MouseMovedEvent e)
         {
             facing += e.GetChange();
             if (facing.x <= -180.0f) facing.x += 360.0f;
             if (facing.x > 180.0f) facing.x -= 360.0f;
             if (facing.y < -90.0f) facing.y = -90.0f;
             if (facing.y > 90.0f) facing.y = 90.0f;
-            Console.WriteLine("Facing: " + facing);
         }
-        public static void Update(int elapsedTime)
+        public void Update(int elapsedTime)
         {
             position += GetMovementDirection() * elapsedTime * speed;
-            Console.WriteLine("Position: " + position);
+            Console.WriteLine((position + "\n") + GetYawPitch() + "\n");
         }
-        private static vec3 GetMovementDirection()
+        private vec3 GetMovementDirection()
         {
             vec3 force = new vec3(0,0,0);
             force.y += directionPressed.y;
@@ -57,7 +45,36 @@ namespace Voxel_Engine_Rewrite.src.Entity
                            glm.Cos(glm.Radians(facing.x)) * directionPressed.x);
             force.x += (glm.Sin(glm.Radians(facing.x)) * directionPressed.x +
                            glm.Cos(glm.Radians(facing.x)) * directionPressed.z);
-            return force.NormalizedSafe;
+            return force;
+        }
+        public static Player GetInstance()
+        {
+            return Game.GetPlayer();
+        }
+
+
+        vec3 cameraOffset = new vec3(0, 1, 0);
+        vec3 up = new vec3(0, 1, 0);
+        public vec3 GetCameraLocation()
+        {
+            return GetPosition() + cameraOffset;
+        }
+        public vec3 GetDirection()
+        {
+            float yaw = -GetYawPitch().x;
+            float pitch = GetYawPitch().y;
+            vec3 direction = new vec3();
+            direction.x = glm.Cos(glm.Radians(yaw)) * glm.Cos(glm.Radians(pitch));
+            direction.y = glm.Sin(glm.Radians(pitch));
+            direction.z = glm.Sin(glm.Radians(yaw)) * glm.Cos(glm.Radians(pitch));
+
+            return glm.Normalized(direction);
+        }
+        public mat4 GetLookAtMatrix()
+        {
+            vec3 location = GetCameraLocation();
+            vec3 direction = GetDirection();
+            return mat4.LookAt(location, location + direction, up);
         }
     }
 }
