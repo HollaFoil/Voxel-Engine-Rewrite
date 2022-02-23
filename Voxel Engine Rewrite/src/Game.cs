@@ -13,8 +13,9 @@ namespace Voxel_Engine_Rewrite.src
 {
     internal static class Game
     {
-        private static StateController GameState;
-        private static Player player;
+        private static StateController? GameState;
+        private static Player? player;
+        private static World.World? world;
         public static void Run()
         {
             GameState.Next();
@@ -28,14 +29,19 @@ namespace Voxel_Engine_Rewrite.src
         {
             GameState = new StateController(new Paused());
             player = new Player();
+            world = new World.World();
         }
         public static void Stop()
         {
 
         }
-        public static Player GetPlayer()
+        public static Player? GetPlayer()
         {
             return player;
+        }
+        public static World.World? GetWorld()
+        {
+            return world;
         }
     }
 }

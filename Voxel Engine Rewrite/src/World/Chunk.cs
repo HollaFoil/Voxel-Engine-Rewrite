@@ -39,5 +39,10 @@ namespace Voxel_Engine_Rewrite.src.World
         {
             blocks[x, y, z] = type;
         }
+
+        public override int GetHashCode()
+        {
+            return location.GetHashCode();
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace Voxel_Engine_Rewrite.src.Entity
         public void Update(int elapsedTime)
         {
             position += GetMovementDirection() * elapsedTime * speed;
-            Console.WriteLine((position + "\n") + GetYawPitch() + "\n");
+            //Console.WriteLine((position + "\n") + GetYawPitch() + "\n");
         }
         private vec3 GetMovementDirection()
         {
